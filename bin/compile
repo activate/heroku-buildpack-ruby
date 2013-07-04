@@ -8,6 +8,9 @@ require "language_pack"
 
 if pack = LanguagePack.detect(ARGV[0], ARGV[1])
   pack.log("compile") do
+    time = Time.now
+    pack.l2met("write", {whatever_i_want: rand(100)})
     pack.compile
+    pack.l2met("compile", start: time.to_f, end: Time.now.to_f, duration: Time.now - time)
   end
 end

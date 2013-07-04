@@ -25,3 +25,8 @@ require "language_pack/rails3"
 require "language_pack/disable_deploys"
 require "language_pack/rails4"
 require "language_pack/no_lockfile"
+
+$:.unshift File.expand_path("../../vendor", __FILE__)
+
+require 'lpxc'
+require 'dotenv'

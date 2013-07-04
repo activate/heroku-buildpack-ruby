@@ -100,7 +100,18 @@ class LanguagePack::Base
     end
   end
 
+
+  # l2met("ruby", start: 10, end: 11)
+  #   => "measure.ruby.start=10 measure.ruby.end=11"
+  def l2met(name, log_hash = {})
+    msg_array = log_hash.map {|k,v| "measure.#{name}.#{k}=#{v}" }
+    internal_logplex.puts(msg_array.join(" "))
+  end
+
 private ##################################
+  def internal_logplex
+    @internal_lpxc ||= ENV['LOGPLEX_DEFAULT_TOKEN'] ? Lpxc.new : StringIO.new
+  end
 
   # sets up the environment variables for the build process
   def setup_language_pack_environment
